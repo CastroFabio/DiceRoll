@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<script>
+			function setVoiceOverFocus(element) {
+			  var focusInterval = 10; // ms, time between function calls
+			  var focusTotalRepetitions = 10; // number of repetitions
+
+			  element.setAttribute('tabindex', '0');
+			  element.blur();
+
+			  var focusRepetitions = 0;
+			  var interval = window.setInterval(function() {
+				element.focus();
+				focusRepetitions++;
+				if (focusRepetitions >= focusTotalRepetitions) {
+				  window.clearInterval(interval);
+				}
+			  }, focusInterval);
+			}
+			
+			function roll(side) {
+				var randomNumber = Math.floor(Math.random() * side) + 1;
+				console.log(randomNumber);
+				var result = document.getElementById("result");
+				result.innerHTML = randomNumber;
+				setVoiceOverFocus(result);
+			}
+		</script>
+	</head>
+<body>
+ 
+  <button name="D20" onclick="roll(20)">D20</button>
+  <button name="D12" onclick="roll(12)">D12</button>
+  <button name="D10" onclick="roll(10)">D10</button>
+  <button name="D8" onclick="roll(8)">D8</button>
+  <button name="D6" onclick="roll(6)">D6</button>
+  <button name="D4" onclick="roll(4)">D4</button>
+  <br>
+  <p id="result"> </p>
+</body>
