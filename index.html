@@ -2,6 +2,12 @@
 <html lang="pt-BR">
 	<head>
 		<script>
+			function toggleElement(element) {
+			  if(element.aria-hidden)
+			  	element.aria-hidden = false;
+			  else
+		 	  	element.aria-hidden = true;	
+			}
 			function setVoiceOverFocus(element, returnElement) {
 			  var focusInterval = 10; // ms, time between function calls
 			  var focusTotalRepetitions = 10; // number of repetitions
@@ -14,7 +20,9 @@
 				element.focus();
 				focusRepetitions++;
 				if (focusRepetitions >= focusTotalRepetitions) {
+				  toggleElement(returnElement);
 				  returnElement.focus();
+				  toggleElement(returnElement);
 				  window.clearInterval(interval);
 				}
 			  }, focusInterval);
