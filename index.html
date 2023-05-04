@@ -25,17 +25,18 @@
 				var result = document.getElementById("result");
 				result.innerHTML = randomNumber;
 				setVoiceOverFocus(result);
+			 	document.getElementById("D" + side ).focus();
 			}
 		</script>
 	</head>
 <body>
  
-  <button name="D20" onclick="roll(20)">aaa</button>
-  <button name="D12" onclick="roll(12)">D12</button>
-  <button name="D10" onclick="roll(10)">D10</button>
-  <button name="D8" onclick="roll(8)">D8</button>
-  <button name="D6" onclick="roll(6)">D6</button>
-  <button name="D4" onclick="roll(4)">D4</button>
+  <button id="D20" onclick="roll(20)">D20</button>
+  <button id="D12" onclick="roll(12)">D12</button>
+  <button id="D10" onclick="roll(10)">D10</button>
+  <button id="D8" onclick="roll(8)">D8</button>
+  <button id="D6" onclick="roll(6)">D6</button>
+  <button id="D4" onclick="roll(4)">D4</button>
   <br>
   <p id="result"> </p>
 </body>
