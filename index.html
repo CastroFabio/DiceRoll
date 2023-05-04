@@ -14,10 +14,10 @@
 				element.focus();
 				focusRepetitions++;
 				if (focusRepetitions >= focusTotalRepetitions) {
+				  returnElement.focus();
 				  window.clearInterval(interval);
 				}
 			  }, focusInterval);
-			  returnElement.focus();
 			}
 			
 			function roll(side) {
