@@ -1,86 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-	<head>
-		<script>
-			function toggleElement(element) {
-			  if(!element.ariaHidden) {
-			  	element.ariaHidden="true";
-			  }
-			  else {
-		 	  	element.ariaHidden="false";
-			  }
-			}
+  <head>
+    <script>
+      //ariaHidden as extensões ignoram o que foi marcado (foco)
 
-			function setVoiceOverFocus(element) {
-			  var focusInterval = 10; // ms, time between function calls
-			  var focusTotalRepetitions = 10; // number of repetitions
+      //Dá
+      function setVoiceOverFocus(element) {
+        var focusInterval = 10; // ms, time between function calls
+        var focusTotalRepetitions = 10; // number of repetitions
 
-			  element.setAttribute('tabindex', '0');
-			  element.blur();
+        element.setAttribute("tabindex", "0");
+        element.blur();
 
-			  var focusRepetitions = 0;
-			  var interval = window.setInterval(function() {
-				element.focus();
-				focusRepetitions++;
-				if (focusRepetitions >= focusTotalRepetitions) {
-				  window.clearInterval(interval);
-				}
-			  }, focusInterval);
-			}
-			
-			function roll(side) {
-				var e = document.getElementById("ddlDiceQuantity");
-				var diceQtd = e.value;
-				var elementTotalResult = document.getElementById("totalResult");
-				var elementSegmentResult = document.getElementById("segmentResult");
+        var focusRepetitions = 0;
+        var interval = window.setInterval(function () {
+          element.focus();
+          focusRepetitions++;
+          if (focusRepetitions >= focusTotalRepetitions) {
+            window.clearInterval(interval);
+          }
+        }, focusInterval);
+      }
 
-				var diceTotalResult = 0;
-				var segmentResult = "";
+      function roll(side) {
+        var e = document.getElementById("ddlDiceQuantity");
+        var diceQtd = e.value;
+        var elementTotalResult = document.getElementById("totalResult");
+        var elementSegmentResult = document.getElementById("segmentResult");
 
-				for (let i = 0; i < diceQtd; i++) {
-					var dice = Math.floor(Math.random() * side) + 1;
-					diceTotalResult += dice;
-					segmentResult = segmentResult.concat(dice.toString() + " ");
-				}
+        var diceTotalResult = 0;
+        var segmentResult = "";
 
-				elementTotalResult.innerHTML = diceTotalResult;
+        for (let i = 0; i < diceQtd; i++) {
+          var dice = Math.floor(Math.random() * side) + 1;
+          diceTotalResult += dice;
+          segmentResult = segmentResult.concat(dice.toString() + " ");
+        }
 
-				if(diceQtd > 1)
-				{
-					elementSegmentResult.innerHTML = segmentResult;
-					elementSegmentResult.hidden = false;
-				} else {
-					elementSegmentResult.hidden = true;
-				}
+        elementTotalResult.innerHTML = diceTotalResult;
 
-				setVoiceOverFocus(elementTotalResult);
-			}
-		</script>
-	</head>
-<body>
-	 <div hidden>v1</div>
-  <select id="ddlDiceQuantity" aria-describedby="Quantidade de dados">
-	<option value="1" selected>1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10</option>
-  </select>
-  <button id="D20" onclick="roll(20)">D20</button>
-  <button id="D12" onclick="roll(12)">D12</button>
-  <button id="D10" onclick="roll(10)">D10</button>
-  <button id="D8"  onclick="roll(8)">D8</button>
-  <button id="D6"  onclick="roll(6)">D6</button>
-  <button id="D4"  onclick="roll(4)">D4</button>
-  <br>
-  <br>
-  <span ariaHidden="true">Resultado total:</span> <span id="totalResult"></span>
-  <br>
-  <br>
-  <span ariaHidden="true">Resultado dos dados:</span> <span tabindex="0" id="segmentResult" hidden></span>
-</body>
+        if (diceQtd > 1) {
+          elementSegmentResult.innerHTML = segmentResult;
+          elementSegmentResult.hidden = false;
+        } else {
+          elementSegmentResult.hidden = true;
+        }
+        setVoiceOverFocus(elementTotalResult);
+
+        var delayInMilliseconds = 2000; //1 second
+
+        setTimeout(function () {
+          if (side === 20) {
+            var element = document.getElementById("D20");
+            element.focus();
+            setVoiceOverFocus(element);
+          } else if (side === 12) {
+            var element = document.getElementById("D12");
+            element.focus();
+            setVoiceOverFocus(element);
+          } else if (side === 10) {
+            var element = document.getElementById("D10");
+            element.focus();
+            setVoiceOverFocus(element);
+          } else if (side === 8) {
+            var element = document.getElementById("D8");
+            element.focus();
+            setVoiceOverFocus(element);
+          } else if (side === 6) {
+            var element = document.getElementById("D6");
+            element.focus();
+            setVoiceOverFocus(element);
+          } else if (side === 4) {
+            var element = document.getElementById("D4");
+            element.focus();
+            setVoiceOverFocus(element);
+          }
+        }, delayInMilliseconds);
+      }
+    </script>
+  </head>
+  <body>
+    <div hidden>v1</div>
+    <select id="ddlDiceQuantity" aria-describedby="Quantidade de dados">
+      <option value="1" selected>1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+    <button id="D20" onclick="roll(20)">D20</button>
+    <button id="D12" onclick="roll(12)">D12</button>
+    <button id="D10" onclick="roll(10)">D10</button>
+    <button id="D8" onclick="roll(8)">D8</button>
+    <button id="D6" onclick="roll(6)">D6</button>
+    <button id="D4" onclick="roll(4)">D4</button>
+    <br />
+    <br />
+    <span ariaHidden="true">Resultado total:</span>
+    <span id="totalResult"></span>
+    <br />
+    <br />
+    <span ariaHidden="true">Resultado dos dados:</span>
+    <span tabindex="0" id="segmentResult" hidden></span>
+  </body>
+</html>
