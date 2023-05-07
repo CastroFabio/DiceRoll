@@ -2,9 +2,6 @@
 <html lang="pt-BR">
   <head>
     <script>
-      //ariaHidden as extensões ignoram o que foi marcado (foco)
-
-      //Dá
       function setVoiceOverFocus(element) {
         var focusInterval = 10; // ms, time between function calls
         var focusTotalRepetitions = 10; // number of repetitions
@@ -47,34 +44,17 @@
         }
         setVoiceOverFocus(elementTotalResult);
 
-        var delayInMilliseconds = 2000; //1 second
+        var delayInMilliseconds = 2000; //2 seconds
 
         setTimeout(function () {
-          if (side === 20) {
-            var element = document.getElementById("D20");
-            element.focus();
-            setVoiceOverFocus(element);
-          } else if (side === 12) {
-            var element = document.getElementById("D12");
-            element.focus();
-            setVoiceOverFocus(element);
-          } else if (side === 10) {
-            var element = document.getElementById("D10");
-            element.focus();
-            setVoiceOverFocus(element);
-          } else if (side === 8) {
-            var element = document.getElementById("D8");
-            element.focus();
-            setVoiceOverFocus(element);
-          } else if (side === 6) {
-            var element = document.getElementById("D6");
-            element.focus();
-            setVoiceOverFocus(element);
-          } else if (side === 4) {
-            var element = document.getElementById("D4");
-            element.focus();
-            setVoiceOverFocus(element);
-          }
+          if (side === 20) var element = document.getElementById("D20");
+          else if (side === 12) var element = document.getElementById("D12");
+          else if (side === 10) var element = document.getElementById("D10");
+          else if (side === 8) var element = document.getElementById("D8");
+          else if (side === 6) var element = document.getElementById("D6");
+          else if (side === 4) var element = document.getElementById("D4");
+          element.focus();
+          setVoiceOverFocus(element);
         }, delayInMilliseconds);
       }
     </script>
